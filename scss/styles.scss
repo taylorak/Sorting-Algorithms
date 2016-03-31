@@ -18,3 +18,14 @@ $breakpoints: (
         + "Available breakpoints are: #{map-keys($breakpoints)}.";
   }
 }
+
+#canvas {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 600px;
+  height: 200px;
+}
+
+.row {
+  flex: 1 1 auto;
+}

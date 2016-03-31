@@ -31,9 +31,3 @@ function bubbleSort(arr) {
     arrlength--;
   }
 }
- // var random = [3, 2, 1];
-
- // var gen = bubbleSort(random);
- // console.log(gen.next().value);
- // console.log(gen.next().value);
- // console.log(gen.next().value);

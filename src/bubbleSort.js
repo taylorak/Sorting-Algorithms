@@ -1,4 +1,4 @@
-function* bubbleSort(arr) {
+function* bubbleSort2(arr) {
   var isSorted = false;
   var arrlength = arr.length - 1;
 
@@ -15,12 +15,22 @@ function* bubbleSort(arr) {
   }
 }
 
-function swap(arr, firstIndex, secondIndex) {
-  var tmp = arr[firstIndex];
-  arr[firstIndex] = arr[secondIndex];
-  arr[secondIndex] = tmp;
-}
 
+function bubbleSort(arr) {
+  var isSorted = false;
+  var arrlength = arr.length - 1;
+
+  while(!isSorted) {
+    isSorted = true;
+    for(var i = 0; i < arrlength; i++) {
+      if(arr[i + 1] < arr[i]) {
+        swap(arr, i, i + 1);
+        isSorted = false;
+      }
+    }
+    arrlength--;
+  }
+}
  // var random = [3, 2, 1];
 
  // var gen = bubbleSort(random);

@@ -31,7 +31,7 @@
 
     // Initializes Array and Event Listeners
     createArray(length);
-    gen = bubbleSort(arr);
+    gen = bubbleSort2(arr);
     addEventListeners();
     drawArray();
   }
@@ -72,7 +72,7 @@
       if(sortingLoop) {
         clearInterval(sortingLoop);
       }
-      gen = bubbleSort(arr);
+      gen = bubbleSort2(arr);
       sortingLoop = setInterval(function() {
         if(gen.next().value === undefined) {
           clearInterval(sortingLoop);

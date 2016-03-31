@@ -26,9 +26,3 @@ function partition(arr, firstIndex, secondIndex) {
     swap(arr, biggerIndex, smallerIndex);
   }
 }
-
-function swap(arr, firstIndex, secondIndex) {
-  var tmp = arr[firstIndex];
-  arr[firstIndex] = arr[secondIndex];
-  arr[secondIndex] = tmp;
-}

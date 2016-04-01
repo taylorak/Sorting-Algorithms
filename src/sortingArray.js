@@ -1,5 +1,5 @@
-function sortingArray(array, canvas, elementWidth) {
-  this.array = array;
+function sortingArray(arr, canvas, elementWidth) {
+  this.array = arr;
   this.actions = [];
   this.domArray = [];
 
@@ -9,8 +9,8 @@ function sortingArray(array, canvas, elementWidth) {
   for(var i = 0; i < this.array.length; i ++) {
     var row = document.createElement('div');
     row.className = 'row';
-    row.style.width = elementWidth * arr[i] + 'px';
-    row.style.backgroundColor = 'blue';
+    row.style.width = elementWidth * this.array[i] + 'px';
+    row.style.backgroundColor = '#9D538E';
     this.domArray[i] = row;
     canvas.appendChild(row);
   }
@@ -31,13 +31,19 @@ sortingArray.prototype.swap = function(firstIndex, secondIndex) {
       index : secondIndex,
       height: this.array[secondIndex]
     }
-  })
+  });
 
   //this.domArray[firstIndex].style.width = this.elementWidth * this.array[firstIndex] + 'px';
   //this.domArray[secondIndex].style.width = this.elementWidth * this.array[secondIndex] + 'px';
 }
 
 sortingArray.prototype.lessThan = function(firstIndex, secondIndex) {
+  this.actions.push({
+    name : 'lessThan',
+    element1: firstIndex,
+    element2: secondIndex
+  });
+
   return this.array[firstIndex] < this.array[secondIndex];
 }
 
@@ -49,14 +55,22 @@ sortingArray.prototype.length = function() {
   return this.array.length;
 }
 
-sortingArray.prototype.reset = function() {
+sortingArray.prototype.reset = function(arr) {
 
 }
 
 sortingArray.prototype.step = function() {
+
+  if(this.actions.length === 0) {
+    return;
+  }
+
   var currentAction = this.actions.shift();
+  console.log(currentAction.name);
+  var lastModified = [];
+
   switch(currentAction.name) {
-    case 'switch':
+    case 'swap':
       var index1 = currentAction.element1.index;
       var width1 = currentAction.element1.height;
 
@@ -65,8 +79,25 @@ sortingArray.prototype.step = function() {
 
       this.domArray[index1].style.width = this.elementWidth * width1 + 'px';
       this.domArray[index2].style.width = this.elementWidth * width2 + 'px';
+
+      this.domArray[index1].style.background = '#692DAC';
+      this.domArray[index2].style.background = '#692DAC';
+
+      lastModified.push(this.domArray[index1]);
+      lastModified.push(this.domArray[index2]);
+      break;
+    case 'lessThan':
+      var index1 = currentAction.element1;
+      var index2 = currentAction.element2;
+
+      this.domArray[index1].style.background = '#34ACAF';
+      this.domArray[index2].style.background = '#34ACAF';
+
+      lastModified.push(this.domArray[index1]);
+      lastModified.push(this.domArray[index2]);
       break;
     default:
       console.log('default');
   }
+  return lastModified;
 }

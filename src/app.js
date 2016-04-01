@@ -4,11 +4,11 @@
   var largestNum = 0;
   var elementWidth;
 
-  var gen = null;
-
   var bubbleSortButton = null;
   var reset = null;
   var canvas = null;
+
+  var visualizedArray = null;
 
   function init(length) {
     // Creates Bubble Sort Button
@@ -31,9 +31,9 @@
 
     // Initializes Array and Event Listeners
     createArray(length);
-    gen = bubbleSort2(arr);
-    addEventListeners();
-    drawArray();
+    visualizedArray = new sortingArray(arr, canvas, elementWidth);
+    addEventListeners(length);
+    // drawArray();
   }
 
   function createArray(length) {
@@ -46,44 +46,53 @@
     elementWidth = canvas.offsetWidth / 101;
   }
 
-  function drawArray() {
-    canvas.innerHTML = '';
-    for(var i = 0; i < arr.length; i++) {
-      var row = document.createElement('div');
-      row.className = 'row';
-      row.style.width = elementWidth * arr[i] + 'px';
-      row.style.backgroundColor = 'blue';
-      canvas.appendChild(row);
-    }
-  }
+  // function drawArray() {
+  //   canvas.innerHTML = '';
+  //   for(var i = 0; i < arr.length; i++) {
+  //     var row = document.createElement('div');
+  //     row.className = 'row';
+  //     row.style.width = elementWidth * arr[i] + 'px';
+  //     row.style.backgroundColor = 'blue';
+  //     canvas.appendChild(row);
+  //   }
+  // }
 
   var sortingLoop = null;
-  function addEventListeners() {
+  function addEventListeners(length) {
 
     reset.addEventListener('click', function() {
       if(sortingLoop) {
         clearInterval(sortingLoop);
       }
-      createArray(50);
-      drawArray();
+      createArray(length);
+      canvas.innerHTML = '';
+      visualizedArray = new sortingArray(arr, canvas, elementWidth);
     })
 
     bubbleSortButton.addEventListener('click', function() {
       if(sortingLoop) {
         clearInterval(sortingLoop);
       }
-      gen = bubbleSort2(arr);
+
+      if(visualizedArray.actions.length === 0) {
+        bubbleSort(visualizedArray);
+      }
+
+      var lastModified = null;
       sortingLoop = setInterval(function() {
-        if(gen.next().value === undefined) {
+        if(lastModified) {
+          lastModified[0].style.backgroundColor = '#9D538E';
+          lastModified[1].style.backgroundColor = '#9D538E';
+        }
+        lastModified = visualizedArray.step();
+        if(lastModified === undefined) {
           clearInterval(sortingLoop);
         }
-        drawArray();
-      }, 10)
-
+      }, 100)
     })
   }
 
-  init(50);
+  init(20);
 
 
 })();

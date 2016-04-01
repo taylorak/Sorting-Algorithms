@@ -1,19 +1,21 @@
-function sortingArray(arr, canvas, elementWidth) {
-  this.array = arr;
+function sortingArray(length, canvas) {
+  this.array = [];
   this.actions = [];
   this.domArray = [];
 
-  this.elementWidth = elementWidth;
+  //this.elementWidth = elementWidth;
+  this.elementWidth = canvas.offsetWidth / 101;
 
   // draws array
-  for(var i = 0; i < this.array.length; i ++) {
+  for(var i = 0; i < length; i ++) {
     var row = document.createElement('div');
     row.className = 'row';
-    row.style.width = elementWidth * this.array[i] + 'px';
     row.style.backgroundColor = '#9D538E';
     this.domArray[i] = row;
     canvas.appendChild(row);
   }
+
+  this.reset(length);
 }
 
 sortingArray.prototype.swap = function(firstIndex, secondIndex) {
@@ -32,9 +34,6 @@ sortingArray.prototype.swap = function(firstIndex, secondIndex) {
       height: this.array[secondIndex]
     }
   });
-
-  //this.domArray[firstIndex].style.width = this.elementWidth * this.array[firstIndex] + 'px';
-  //this.domArray[secondIndex].style.width = this.elementWidth * this.array[secondIndex] + 'px';
 }
 
 sortingArray.prototype.lessThan = function(firstIndex, secondIndex) {
@@ -47,16 +46,17 @@ sortingArray.prototype.lessThan = function(firstIndex, secondIndex) {
   return this.array[firstIndex] < this.array[secondIndex];
 }
 
-sortingArray.prototype.greaterThan = function(firstIndex, secondIndex) {
-  return this.array[secondIndex] < this.array[firstIndex];
-}
-
 sortingArray.prototype.length = function() {
   return this.array.length;
 }
 
-sortingArray.prototype.reset = function(arr) {
-
+sortingArray.prototype.reset = function(length) {
+  for(var i = 0; i < length; i++) {
+    var randomNum = Math.floor(Math.random() * 100) + 1;
+    this.array[i] = randomNum;
+    this.domArray[i].style.width = this.elementWidth * this.array[i] + 'px';
+    this.domArray[i].style.backgroundColor = '#9D538E'
+  }
 }
 
 sortingArray.prototype.step = function() {
@@ -66,7 +66,6 @@ sortingArray.prototype.step = function() {
   }
 
   var currentAction = this.actions.shift();
-  console.log(currentAction.name);
   var lastModified = [];
 
   switch(currentAction.name) {

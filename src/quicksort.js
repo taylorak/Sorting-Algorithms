@@ -7,22 +7,22 @@ function quicksort(arr, firstIndex, secondIndex) {
 }
 
 function partition(arr, firstIndex, secondIndex) {
-  var pivot = arr[firstIndex];
+  var pivotIndex = firstIndex;
   var biggerIndex = firstIndex - 1;
   var smallerIndex = secondIndex + 1;
 
   while(true) {
     do {
       biggerIndex++;
-    } while(arr[biggerIndex] < pivot);
+    } while(arr.lessThan(biggerIndex, pivotIndex));
 
     do{
       smallerIndex--;
-    } while(arr[smallerIndex] > pivot);
+    } while(arr.lessThan(pivotIndex, smallerIndex));
 
     if(biggerIndex >= smallerIndex) {
       return smallerIndex;
     }
-    swap(arr, biggerIndex, smallerIndex);
+    arr.swap(biggerIndex, smallerIndex);
   }
 }

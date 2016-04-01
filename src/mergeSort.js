@@ -1,5 +1,5 @@
 function mergeSort(arr) {
-  splitMerge(arr, 0, arr.length, []);
+  splitMerge(arr, 0, arr.length(), []);
 }
 
 function splitMerge(arr, startIndex, endIndex, workArr) {
@@ -19,11 +19,11 @@ function merge(arr, startIndex, middleIndex, endIndex, workArr) {
   var leftIndex = startIndex;
   var rightIndex = middleIndex;
   for(var i = startIndex; i < endIndex; i++) {
-    if(leftIndex < middleIndex && (rightIndex >= endIndex || arr[leftIndex] <= arr[rightIndex])) {
-      workArr[i] = arr[leftIndex];
+    if(leftIndex < middleIndex && (rightIndex >= endIndex || arr.lessThanOrEqual(leftIndex, rightIndex))) {
+      workArr[i] = arr.array[leftIndex];
       leftIndex += 1;
     } else {
-      workArr[i] = arr[rightIndex];
+      workArr[i] = arr.array[rightIndex];
       rightIndex += 1;
     }
   }
@@ -31,6 +31,6 @@ function merge(arr, startIndex, middleIndex, endIndex, workArr) {
 
 function copyArray(workArr, startIndex, endIndex, arr) {
   for(var i = startIndex; i < endIndex; i++) {
-    arr[i] = workArr[i];
+    arr.setHeight(i, workArr[i]);
   }
 }

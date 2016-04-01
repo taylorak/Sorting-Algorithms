@@ -3,7 +3,6 @@ function insertionSort(arr) {
     var index = i;
     while(index > 0 && arr.lessThan(index, index - 1)) {
       arr.swap(index, index - 1);
-      //swap(arr, index, index - 1);
       index = index - 1;
     }
   }

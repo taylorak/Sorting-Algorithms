@@ -5,6 +5,7 @@
   var selectionSortButton = null;
   var insertionSortButton = null;
   var quicksortButton = null;
+  var mergeSortButton = null;
 
   var reset = null;
   var canvas = null;
@@ -33,6 +34,11 @@
     quicksortButton.className = 'button'
     quicksortButton.innerHTML = 'Quicksort';
 
+    mergeSortButton = document.createElement('button');
+    mergeSortButton.id = 'mergeSort';
+    mergeSortButton.className = 'button';
+    mergeSortButton.innerHTML = 'Merge Sort';
+
     // Creates Reset Button
     reset = document.createElement('button');
     reset.id = 'reset';
@@ -42,10 +48,11 @@
     canvas = document.createElement('div');
     canvas.id = 'canvas';
 
-    container.appendChild(bubbleSortButton)
-    container.appendChild(selectionSortButton)
-    container.appendChild(insertionSortButton)
-    container.appendChild(quicksortButton)
+    container.appendChild(bubbleSortButton);
+    container.appendChild(selectionSortButton);
+    container.appendChild(insertionSortButton);
+    container.appendChild(quicksortButton);
+    container.appendChild(mergeSortButton);
     container.appendChild(reset);
     container.appendChild(canvas);
 
@@ -81,6 +88,12 @@
     quicksortButton.addEventListener('click', function() {
       if(visualizedArray.actions.length === 0) {
         quicksort(visualizedArray, 0, visualizedArray.length() - 1);
+      }
+    })
+
+    mergeSortButton.addEventListener('click', function() {
+      if(visualizedArray.actions.length === 0) {
+        mergeSort(visualizedArray);
       }
     })
 

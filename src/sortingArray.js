@@ -46,11 +46,32 @@ sortingArray.prototype.swap = function(firstIndex, secondIndex) {
 sortingArray.prototype.lessThan = function(firstIndex, secondIndex) {
   this.actions.push({
     name : 'lessThan',
-    element1: firstIndex,
-    element2: secondIndex
+    element1 : firstIndex,
+    element2 : secondIndex
   });
 
   return this.array[firstIndex] < this.array[secondIndex];
+}
+
+sortingArray.prototype.lessThanOrEqual = function(firstIndex, secondIndex) {
+    this.actions.push({
+    name : 'lessThan',
+    element1 : firstIndex,
+    element2 : secondIndex
+  });
+
+  return this.array[firstIndex] <= this.array[secondIndex];
+}
+
+sortingArray.prototype.setHeight = function(firstIndex, width) {
+  this.array[firstIndex] = width;
+  this.actions.push({
+    name : 'setHeight',
+    element1 : {
+      index : firstIndex,
+      height : this.array[firstIndex]
+    }
+  })
 }
 
 sortingArray.prototype.length = function() {
@@ -114,6 +135,13 @@ sortingArray.prototype.step = function() {
 
       this.lastModified.push(this.domArray[index1]);
       this.lastModified.push(this.domArray[index2]);
+      break;
+    case 'setHeight':
+      var index1 = currentAction.element1.index;
+      var width1 = currentAction.element1.height;
+      this.domArray[index1].style.width = this.elementWidth * width1 + 'px';
+      this.domArray[index1].style.background = '#692DAC';
+      this.lastModified.push(this.domArray[index1]);
       break;
     default:
       console.log('default');

@@ -73,15 +73,12 @@
         clearInterval(sortingLoop);
       }
       visualizedArray.reset(length);
-      visualizedArray.actions =[];
-      //createArray(length);
-      //canvas.innerHTML = '';
-      //visualizedArray = new sortingArray(arr, canvas, elementWidth);
     })
 
     bubbleSortButton.addEventListener('click', function() {
       if(sortingLoop) {
         clearInterval(sortingLoop);
+        visualizedArray.reset(length);
       }
 
       if(visualizedArray.actions.length === 0) {
@@ -102,8 +99,9 @@
     })
 
     selectionSortButton.addEventListener('click', function() {
-            if(sortingLoop) {
+      if(sortingLoop) {
         clearInterval(sortingLoop);
+        visualizedArray.reset(length);
       }
 
       if(visualizedArray.actions.length === 0) {
@@ -124,8 +122,9 @@
     })
 
     insertionSortButton.addEventListener('click', function() {
-            if(sortingLoop) {
+      if(sortingLoop) {
         clearInterval(sortingLoop);
+        visualizedArray.reset(length);
       }
 
       if(visualizedArray.actions.length === 0) {
@@ -146,8 +145,9 @@
     })
 
     quicksortButton.addEventListener('click', function() {
-            if(sortingLoop) {
+      if(sortingLoop) {
         clearInterval(sortingLoop);
+        visualizedArray.reset(length);
       }
 
       if(visualizedArray.actions.length === 0) {

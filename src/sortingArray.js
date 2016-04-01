@@ -57,6 +57,7 @@ sortingArray.prototype.reset = function(length) {
     this.domArray[i].style.width = this.elementWidth * this.array[i] + 'px';
     this.domArray[i].style.backgroundColor = '#9D538E'
   }
+  this.actions = [];
 }
 
 sortingArray.prototype.step = function() {

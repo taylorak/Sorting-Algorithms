@@ -1,8 +1,5 @@
 (function() {
   var container = document.querySelector('#sortingAlgorithms');
-  var arr = [];
-  var largestNum = 0;
-  var elementWidth;
 
   var bubbleSortButton = null;
   var selectionSortButton = null;
@@ -14,7 +11,7 @@
 
   var visualizedArray = null;
 
-  function init(length) {
+  function init(length, interval) {
     // Creates Bubble Sort Button
     bubbleSortButton = document.createElement('button');
     bubbleSortButton.id = 'bubbleSort';
@@ -53,11 +50,10 @@
     container.appendChild(canvas);
 
     // Initializes Array and Event Listeners
-    visualizedArray = new sortingArray(length, canvas, 500);
+    visualizedArray = new sortingArray(length, canvas, interval);
     addEventListeners(length);
   }
 
-  var sortingLoop = null;
   function addEventListeners(length) {
 
     reset.addEventListener('click', function() {
@@ -90,7 +86,7 @@
 
   }
 
-  init(20);
+  init(20, 300);
 
 
 })();

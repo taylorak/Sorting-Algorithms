@@ -18,18 +18,22 @@
     // Creates Bubble Sort Button
     bubbleSortButton = document.createElement('button');
     bubbleSortButton.id = 'bubbleSort';
+    bubbleSortButton.className = 'button';
     bubbleSortButton.innerHTML = 'Bubble Sort';
 
     selectionSortButton = document.createElement('button');
     selectionSortButton.id = 'selectionSort';
+    selectionSortButton.className = 'button';
     selectionSortButton.innerHTML = 'Selection Sort';
 
     insertionSortButton = document.createElement('button');
     insertionSortButton.id = 'insertionSort';
+    insertionSortButton.className = 'button'
     insertionSortButton.innerHTML = 'Insertion Sort';
 
     quicksortButton = document.createElement('button');
     quicksortButton.id = 'quicksort';
+    quicksortButton.className = 'button'
     quicksortButton.innerHTML = 'Quicksort';
 
     // Creates Reset Button
@@ -49,123 +53,41 @@
     container.appendChild(canvas);
 
     // Initializes Array and Event Listeners
-    //createArray(length);
-    visualizedArray = new sortingArray(length, canvas, elementWidth);
+    visualizedArray = new sortingArray(length, canvas, 500);
     addEventListeners(length);
-    // drawArray();
-  }
-
-  function createArray(length) {
-    for(var i = 0; i < length; i++) {
-      arr[i] = Math.floor(Math.random() * 100) + 1;
-      if(arr[i] > largestNum) {
-        largestNum = arr[i];
-      }
-    }
-    elementWidth = canvas.offsetWidth / 101;
   }
 
   var sortingLoop = null;
   function addEventListeners(length) {
 
     reset.addEventListener('click', function() {
-      if(sortingLoop) {
-        clearInterval(sortingLoop);
-      }
       visualizedArray.reset(length);
     })
 
     bubbleSortButton.addEventListener('click', function() {
-      if(sortingLoop) {
-        clearInterval(sortingLoop);
-        visualizedArray.reset(length);
-      }
-
       if(visualizedArray.actions.length === 0) {
         bubbleSort(visualizedArray);
       }
-
-      var lastModified = null;
-      sortingLoop = setInterval(function() {
-        if(lastModified) {
-          lastModified[0].style.backgroundColor = '#9D538E';
-          lastModified[1].style.backgroundColor = '#9D538E';
-        }
-        lastModified = visualizedArray.step();
-        if(lastModified === undefined) {
-          clearInterval(sortingLoop);
-        }
-      }, 100)
     })
 
     selectionSortButton.addEventListener('click', function() {
-      if(sortingLoop) {
-        clearInterval(sortingLoop);
-        visualizedArray.reset(length);
-      }
-
       if(visualizedArray.actions.length === 0) {
         selectionSort(visualizedArray);
       }
-
-      var lastModified = null;
-      sortingLoop = setInterval(function() {
-        if(lastModified) {
-          lastModified[0].style.backgroundColor = '#9D538E';
-          lastModified[1].style.backgroundColor = '#9D538E';
-        }
-        lastModified = visualizedArray.step();
-        if(lastModified === undefined) {
-          clearInterval(sortingLoop);
-        }
-      }, 100)
     })
 
     insertionSortButton.addEventListener('click', function() {
-      if(sortingLoop) {
-        clearInterval(sortingLoop);
-        visualizedArray.reset(length);
-      }
-
       if(visualizedArray.actions.length === 0) {
         insertionSort(visualizedArray);
       }
-
-      var lastModified = null;
-      sortingLoop = setInterval(function() {
-        if(lastModified) {
-          lastModified[0].style.backgroundColor = '#9D538E';
-          lastModified[1].style.backgroundColor = '#9D538E';
-        }
-        lastModified = visualizedArray.step();
-        if(lastModified === undefined) {
-          clearInterval(sortingLoop);
-        }
-      }, 100)
     })
 
     quicksortButton.addEventListener('click', function() {
-      if(sortingLoop) {
-        clearInterval(sortingLoop);
-        visualizedArray.reset(length);
-      }
-
       if(visualizedArray.actions.length === 0) {
         quicksort(visualizedArray, 0, visualizedArray.length() - 1);
       }
-
-      var lastModified = null;
-      sortingLoop = setInterval(function() {
-        if(lastModified) {
-          lastModified[0].style.backgroundColor = '#9D538E';
-          lastModified[1].style.backgroundColor = '#9D538E';
-        }
-        lastModified = visualizedArray.step();
-        if(lastModified === undefined) {
-          clearInterval(sortingLoop);
-        }
-      }, 100)
     })
+
   }
 
   init(20);

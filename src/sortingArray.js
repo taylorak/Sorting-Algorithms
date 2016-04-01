@@ -1,9 +1,10 @@
-function sortingArray(length, canvas) {
+function sortingArray(length, canvas, interval) {
   this.array = [];
   this.actions = [];
   this.domArray = [];
+  this.lastModified = [];
+  this.pivot = null;
 
-  //this.elementWidth = elementWidth;
   this.elementWidth = canvas.offsetWidth / 101;
 
   // draws array
@@ -16,6 +17,11 @@ function sortingArray(length, canvas) {
   }
 
   this.reset(length);
+
+  var that = this;
+  this.sortingLoop = setInterval(function() {
+    that.step();
+  }, interval)
 }
 
 sortingArray.prototype.swap = function(firstIndex, secondIndex) {
@@ -58,16 +64,28 @@ sortingArray.prototype.reset = function(length) {
     this.domArray[i].style.backgroundColor = '#9D538E'
   }
   this.actions = [];
+  this.pivot = null;
 }
 
+sortingArray.prototype.setPivot = function(index) {
+  this.pivot = index;
+  return this.pivot;
+}
+
+
 sortingArray.prototype.step = function() {
+
+  if(this.lastModified) {
+    this.lastModified.forEach(function(element) {
+      element.style.backgroundColor = '#9D538E';
+    })
+  }
 
   if(this.actions.length === 0) {
     return;
   }
 
   var currentAction = this.actions.shift();
-  var lastModified = [];
 
   switch(currentAction.name) {
     case 'swap':
@@ -83,8 +101,8 @@ sortingArray.prototype.step = function() {
       this.domArray[index1].style.background = '#692DAC';
       this.domArray[index2].style.background = '#692DAC';
 
-      lastModified.push(this.domArray[index1]);
-      lastModified.push(this.domArray[index2]);
+      this.lastModified.push(this.domArray[index1]);
+      this.lastModified.push(this.domArray[index2]);
       break;
     case 'lessThan':
       var index1 = currentAction.element1;
@@ -93,11 +111,12 @@ sortingArray.prototype.step = function() {
       this.domArray[index1].style.background = '#34ACAF';
       this.domArray[index2].style.background = '#34ACAF';
 
-      lastModified.push(this.domArray[index1]);
-      lastModified.push(this.domArray[index2]);
+      this.lastModified.push(this.domArray[index1]);
+      this.lastModified.push(this.domArray[index2]);
       break;
     default:
       console.log('default');
   }
-  return lastModified;
+  return true;
+
 }

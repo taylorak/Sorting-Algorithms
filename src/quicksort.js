@@ -7,7 +7,8 @@ function quicksort(arr, firstIndex, secondIndex) {
 }
 
 function partition(arr, firstIndex, secondIndex) {
-  var pivotIndex = firstIndex;
+  console.log(firstIndex);
+  var pivotIndex = arr.setPivot(firstIndex);
   var biggerIndex = firstIndex - 1;
   var smallerIndex = secondIndex + 1;
 

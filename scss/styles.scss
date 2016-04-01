@@ -33,6 +33,7 @@ h1 {
 .row {
   flex: 1 1 auto;
   margin: 1px;
+  transition: width .5s;
 }
 
 .button {

@@ -38,7 +38,8 @@ sortingArray.prototype.swap = function(firstIndex, secondIndex) {
     element2 : {
       index : secondIndex,
       height: this.array[secondIndex]
-    }
+    },
+    pivot: this.pivot
   });
 }
 

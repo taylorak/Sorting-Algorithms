@@ -73,6 +73,7 @@
         clearInterval(sortingLoop);
       }
       visualizedArray.reset(length);
+      visualizedArray.actions =[];
       //createArray(length);
       //canvas.innerHTML = '';
       //visualizedArray = new sortingArray(arr, canvas, elementWidth);

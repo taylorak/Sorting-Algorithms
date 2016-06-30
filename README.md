@@ -1,6 +1,9 @@
 # Sorting Algorithms
 A visualization of Bubble Sort, Selection Sort, Insertion Sort, Quicksort, and MergeSort.
 
+- green = comparison  
+- dark purple = swap
+
 # Setup
 ```
 $ git clone https://github.com/taylorak/Sorting-Algorithms.git

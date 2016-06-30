@@ -45,7 +45,7 @@ sortingArray.prototype.swap = function(firstIndex, secondIndex) {
 
 sortingArray.prototype.lessThan = function(firstIndex, secondIndex) {
   this.actions.push({
-    name : 'lessThan',
+    name : 'comparison',
     element1 : firstIndex,
     element2 : secondIndex
   });
@@ -55,7 +55,7 @@ sortingArray.prototype.lessThan = function(firstIndex, secondIndex) {
 
 sortingArray.prototype.lessThanOrEqual = function(firstIndex, secondIndex) {
     this.actions.push({
-    name : 'lessThan',
+    name : 'comparison',
     element1 : firstIndex,
     element2 : secondIndex
   });
@@ -126,7 +126,7 @@ sortingArray.prototype.step = function() {
       this.lastModified.push(this.domArray[index1]);
       this.lastModified.push(this.domArray[index2]);
       break;
-    case 'lessThan':
+    case 'comparison':
       var index1 = currentAction.element1;
       var index2 = currentAction.element2;
 
